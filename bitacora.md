@@ -25,3 +25,12 @@
 |producto|actualmente es un nombre que tiene varias propiedades en una sola columna. la conlumna cantidad actual no describe mucho|se puede realizar una nueva columnas como cantidan|
 |identificacion del cliente| los id no dicen mucha informacion|se puede reemplazar por un dato real del cliente|
 |id general| al haber 2 id se puede confundir la lectura|eliminar la columna de id|
+
+---
+### Plan de pseudocodigo
+|Indicador|Que se recorre|Condicion aplicada|Que se acumula| Valor inicial|
+|---|---|---|---|---|
+|Venta total| 
+|Unidades que salieron|
+|Mayor venta|
+|Promedio por cliente|
