@@ -1,5 +1,7 @@
 import { ventas } from "./datos.js";
 
+//Inicio mini reto # 2
+
   const normalizar = (texto) =>
     String(texto ?? "")
     .trim()
@@ -25,7 +27,7 @@ function valorVenta(ventas){
     return precioPorProducto
 }
 
-function totalVendido(ventas){
+export function totalVendido(ventas){
     //s 1.0
     // let total = 0
     // for(const value of ventas){
@@ -41,7 +43,7 @@ function totalVendido(ventas){
     return accumulator   
 }
 
-function unidadesVendidas(ventas){
+export function unidadesVendidas(ventas){
     let totalUnidades = 0
     for(const value of ventas){
         totalUnidades += value.cantidad
@@ -79,7 +81,7 @@ function promedioPorCiudad(ventas, ciudad){
        return cont === 0 ? 0 : total / cont
 }
 
-function ventasPorCiudad(ventas, ciudad){
+export function ventasPorCiudad(ventas, ciudad){
  
     let totalVentasPorCiudad = 0
     for(let i = 0; i < ventas.length; i ++){
@@ -91,7 +93,7 @@ function ventasPorCiudad(ventas, ciudad){
 }
 
 //reto: crear una funcion que devuelva en un objeto nombre de la ciudad y precio acumulado 
-function nombrePrecioAcumulado(ventas){//intento fallido
+function totalPorCiudad(ventas){//intento fallido
     const nombres = [...new Set(ventas.map(v => normalizar(v.ciudad)))]
     let acc = 0
     let objeto = []
@@ -107,8 +109,7 @@ function nombrePrecioAcumulado(ventas){//intento fallido
     return objeto
 }
 
-function nombrePrecioAcumulado2(ventas) {//solucion IA
-  const normalizar = (t) => String(t ?? "").trim().toLowerCase();
+function totalPorCiudad2(ventas) {//solucion IA
   const nombres = [...new Set(ventas.map(v => normalizar(v.ciudad)))];
   const resultado = [];
 
@@ -125,4 +126,53 @@ function nombrePrecioAcumulado2(ventas) {//solucion IA
   return resultado;
 }
 
-console.log(nombrePrecioAcumulado(ventas))
+
+//Inicio mini reto # 3 (usar metodos de arreglo para totalVendido, unidadesVendidas y ventasPoeCiudad)
+
+export function totalVendidoM(ventas){
+    return ventas.reduce((acc, v) => acc + v.precio * v.cantidad, 0)
+}
+
+export function unidadesVendidasM(ventas){
+    return ventas.reduce((acc, v)=> acc + v.cantidad,0)
+}
+
+export function ventasPorCiudadM(ventas, ciudad){
+    return ventas.filter(v => normalizar(v.ciudad) === normalizar(ciudad)).reduce((acc, v)=> acc + v.cantidad, 0)
+    
+}
+
+//Funcion totalPorCiudad
+function totalPorCiudadM(ventas){
+    const nombres = [...new Set(ventas.map(v => normalizar(v.ciudad)))]
+
+    return nombres.map(nombre => {
+        const ciudades = ventas.filter(v => normalizar(v.ciudad) === nombre)
+        const totalVendido = ciudades.reduce((acc, v) => acc + v.precio * v.cantidad,0)
+        return {
+            ciudad: nombre,
+            totalVendido : totalVendido
+        }
+    })
+  
+}
+
+function unidadesPorProducto(ventas){
+    const productos = [...new Set(ventas.map(v => normalizar(v.producto)))]
+
+    return productos.map(producto => {
+        
+        const nombreP = ventas.filter(v => normalizar(v.producto) === producto)
+        const cantidadVentas = nombreP.reduce((acc, v) => acc + v.cantidad, 0)
+        return {
+            producto: producto,
+            cantidadVentas: cantidadVentas
+        }
+    })
+}
+
+function topProductosPorValor(ventas, k){
+
+   
+}
+
