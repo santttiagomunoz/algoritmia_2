@@ -30,7 +30,7 @@
 ### Plan de pseudocodigo
 |Indicador|Que se recorre|Condicion aplicada|Que se acumula| Valor inicial|
 |---|---|---|---|---|
-|Venta total| 
-|Unidades que salieron|
-|Mayor venta|
-|Promedio por cliente|
+|Venta total|se recorre el arreglo ventas|  | se acumula cantidad * precio| 0 | 
+|Unidades que salieron| se recorre el arreglo de ventas en su propiedad cantidad|total += ventas.cantidad| la propiedad cantidad|21|
+|Mayor venta|el arreglo ventas en su propiedad precio| si ventas.precion >= mayorVenta entonces mayorVenta = ventas.precio| no se acumula nada| 120000
+|Promedio por cliente| se recorre el arreglo ventas| 
