@@ -1,10 +1,10 @@
-import { ventas } from "./datos.js";
-import { totalVendido } from "./analitica.js";
-import { totalVendidoM } from "./analitica.js";
-import { unidadesVendidas } from "./analitica.js";
-import { unidadesVendidasM } from "./analitica.js";
-import { ventasPorCiudad } from "./analitica.js";
-import { ventasPorCiudadM } from "./analitica.js";
+import { ventas } from "./datos-d1.js";
+import { totalVendido } from "./analitica-d1.js";
+import { totalVendidoM } from "./analitica-d1.js";
+import { unidadesVendidas } from "./analitica-d1.js";
+import { unidadesVendidasM } from "./analitica-d1.js";
+import { ventasPorCiudad } from "./analitica-d1.js";
+import { ventasPorCiudadM } from "./analitica-d1.js";
 
 function compare(a, b){    
     if(a === b) console.log("OK")

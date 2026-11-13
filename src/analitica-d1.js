@@ -1,4 +1,4 @@
-import { ventas } from "./datos.js";
+import { ventas } from "./datos-d1.js";
 
 //Inicio mini reto # 2
 
@@ -9,22 +9,32 @@ import { ventas } from "./datos.js";
     .normalize("NFD") // NFD separa cada letra acentuada en la letra base mas su tilde (í pasa a i + ´)
     .replace(/[\u0300-\u036f]/g, "") ///[\u0300-\u036f]/g dice que reemplace las tildes
     
+ 
+//dar formatos 
+function darFormato(ventas){
+    
+    let formato
+    for(const v of ventas){
+      formato = toLocaString(v.precio)
+    }
+    return formato
+}    
 
-function valorVenta(ventas){
+export function valorVenta(ventas){
     // return ventas.map(v => v.cantidad * v.precio)
     const precioPorProducto = []
 
     const ciudadyprecio = []
     for(let i = 0; i < ventas.length; i++){
-    precioPorProducto[i] = ventas[i].cantidad * ventas[i].precio     
+   // precioPorProducto[i] = ventas[i].cantidad * ventas[i].precio     
 
     
-    //  ciudadyprecio[i] = {
-    //     ciudad : ventas[i].ciudad,
-    //     total : ventas[i].cantidad * ventas[i].precio
-    //  }
+     ciudadyprecio[i] = {
+        ciudad : ventas[i].ciudad,
+        total : ventas[i].cantidad * ventas[i].precio
+     }
     }
-    return precioPorProducto
+    return ciudadyprecio
 }
 
 export function totalVendido(ventas){
@@ -74,7 +84,7 @@ function promedioPorCiudad(ventas, ciudad){
     
     for(let i = 0; i < ventas.length; i++){
         if(normalizar(ventas[i].ciudad) === normalizar(ciudad)){
-            total= (ventas[i].precio * ventas[i].cantidad) / ventas[i].cantidad
+            total = (ventas[i].precio * ventas[i].cantidad) / ventas[i].cantidad
             cont++
         }     
     }
@@ -143,7 +153,7 @@ export function ventasPorCiudadM(ventas, ciudad){
 }
 
 //Funcion totalPorCiudad
-function totalPorCiudadM(ventas){
+export function totalPorCiudadM(ventas){
     const nombres = [...new Set(ventas.map(v => normalizar(v.ciudad)))]
 
     return nombres.map(nombre => {
@@ -151,13 +161,13 @@ function totalPorCiudadM(ventas){
         const totalVendido = ciudades.reduce((acc, v) => acc + v.precio * v.cantidad,0)
         return {
             ciudad: nombre,
-            totalVendido : totalVendido
+            totalVendido : totalVendido.toLocaleString("es-CO")
         }
     })
   
 }
 
-function unidadesPorProducto(ventas){
+export function unidadesPorProducto(ventas){
     const productos = [...new Set(ventas.map(v => normalizar(v.producto)))]
 
     return productos.map(producto => {
@@ -171,8 +181,31 @@ function unidadesPorProducto(ventas){
     })
 }
 
-function topProductosPorValor(ventas, k){
+export function topProductosPorValor(ventas, k){
 
-   
+    const totales = new Map();
+
+ // 1. Acumular el dinero generado por cada producto
+  for (const v of ventas) {
+    const producto = normalizar(v.producto);
+    totales.set(producto, (totales.get(producto) ?? 0) + v.cantidad * v.precio);
+  }
+
+  // 2. Pasar a arreglo nuevo, ordenar de mayor a menor y quedarse con k
+  return [...totales]
+    .map(([producto, total]) => ({ producto, total:total.toLocaleString("es-CO") }))
+    .sort((a, b) => b.total - a.total)
+    .slice(0, Math.max(0, k));
+
+
+}
+
+
+
+
+
+function ordenAlfabetico(ventas){
+
+    return Array.from(new Set(ventas.map((venta)=> venta.producto)))
 }
 

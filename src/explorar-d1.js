@@ -1,4 +1,4 @@
-import { ventas } from "./datos.js";
+import { ventas } from "./datos-d1.js";
 
 console.log("cantidad de registros: ", ventas.length)
 console.log("Primer registro: ", ventas[0])
