@@ -201,11 +201,9 @@ export function topProductosPorValor(ventas, k){
 }
 
 
+//inicio mc-4.3-d1
+export function ventasDelDia(ventas, fecha){
 
-
-
-function ordenAlfabetico(ventas){
-
-    return Array.from(new Set(ventas.map((venta)=> venta.producto)))
+    return ventas.filter(v=> v.fecha === fecha)
+           
 }
-
