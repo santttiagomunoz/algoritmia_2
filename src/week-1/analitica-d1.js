@@ -204,6 +204,7 @@ export function topProductosPorValor(ventas, k){
 //inicio mc-4.3-d1
 export function ventasDelDia(ventas, fecha){
 
-    return ventas.filter(v=> v.fecha === fecha)
+    let numVentas = ventas.filter(v=> v.fecha === fecha)
+    return numVentas.length
            
 }
