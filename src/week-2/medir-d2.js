@@ -1,7 +1,7 @@
-import { primeraVenta } from "./instrumentadas.js";
-import { totalVendidoI } from "./instrumentadas.js";
-import { ventaMayorI } from "./instrumentadas.js";
-import { totalPorciudadI } from "./instrumentadas.js";
+import { primeraVenta } from "./instrumentadas.d2.js";
+import { totalVendidoI } from "./instrumentadas.d2.js";
+import { ventaMayorI } from "./instrumentadas.d2.js";
+import { totalPorciudadI } from "./instrumentadas.d2.js";
 import { generarVentas } from "./generador-d2.js";
 
 

@@ -2,12 +2,15 @@ import { generarVentas } from "./generador-d2.js"
 
 export const ventasI = generarVentas(10)
 
+
 export function totalVendidoI(ventas){
-  let total = 0
-  let count = 0
-  for (const v of ventas) {
+let count = 0
+let total = 0
+
+for (const v of ventas) {
     count++
     total += v.cantidad * v.precio
+    //console.log(total,v)
   }
   return {totalVendido: total, totalVendidoCount: count}
 }
@@ -47,3 +50,5 @@ export function primeraVenta(ventas){
     return {primeraVenta: ventas.at(0), contador: count}
     
 }
+
+console.log(totalVendidoI(ventasI))

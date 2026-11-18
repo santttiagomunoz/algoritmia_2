@@ -3,23 +3,25 @@ import { ventas } from "../week-1/datos-d1.js";
 export const azar =(inicio, limite)=> Math.floor(Math.random() * (limite - inicio) + inicio) 
 
 const productos = Array.from(new Set(ventas.map(v => v.producto)))
-const ciudades = Array.from(new Set(ventas.map(v => v.producto)))
+const ciudades = Array.from(new Set(ventas.map(v => v.ciudad)))
+const precios = Array.from(new Set(ventas.map(v => v.precio)))
+
+// console.log(precios)
 
 export function generarVentas(n) {
   const clientes = Math.max(1, Math.floor(n / 3));
   const ventas = [];
 
-  for (let i = 0; i < n; i++) {
-    const p = productos[azar(0, productos.length - 1)];
+  for (let i = 0; i < n; i++) {    
 
     ventas.push({
       id: i + 1,
       fecha: "2026-09-" + String(azar(1, 31)).padStart(2, "0"),
       cliente: "C" + String(azar(1, clientes)).padStart(2, "0"),
-      producto: p.producto,
+      producto: productos[azar(0, productos.length - 1)],
       ciudad: ciudades[azar(0, ciudades.length - 1)],
       cantidad: azar(1, 5),
-      precio: p.precio
+      precio: precios[azar(0, ciudades.length - 1)]
     });
   }
 
@@ -47,8 +49,16 @@ function ventaMayor(ventas){
   return mayor
 }
 
-function totalPorciudad(){
-
+function totalPorciudad(ventas){
+  let resultado = []
+  let total = 0
+  for (const v of ventas) {
+      if(resultado[v.ciudad]){
+        resultado[v.ciudad] += total
+      }else{
+        resultado[v.ciudad] = total
+      }
+  }
 }
 
 //console.log(totalVendidoC(generarVentas(10), c))
