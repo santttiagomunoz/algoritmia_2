@@ -1,4 +1,4 @@
-import { ventas } from "../week-1/datos-d1.js";
+import { ventas } from "./datos-d1.js";
 //import { generarVentas } from "./generador-d2.js";
 
 const nVentas = [1000, 2000, 4000, 8000, 16000]

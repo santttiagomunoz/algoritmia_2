@@ -1,4 +1,4 @@
-import { ventas } from "../week-1/datos-d1.js";
+import { ventas } from "./datos-d1.js";
 
 export const azar =(inicio, limite)=> Math.floor(Math.random() * (limite - inicio) + inicio) 
 

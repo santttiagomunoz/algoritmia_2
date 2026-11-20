@@ -127,3 +127,47 @@ al estar recorriendo dos arreglos y sumarle un tercero cambia drasticamente la e
 ### conclusion
 
 el proceso se vuelve mucho mas lento por que se tienen que comparar todos los clientes para ver si se encuentrar en la lista de recuerrentes 
+
+---
+
+### mc-7.4-d2
+### conteo de recorrido
+
+|Funcion|Implementacion|Cantidad de recorridos| Big O temporal | Big O espacial |
+|---|---|---|---|---|
+|**totalCiudad()**| .map .filter .map .reduce| por cada metodo se crea un arreglo de 10000 elementos, entonces 10000 * 4 = 40000(recorridos)| O(n) | O(n) | 
+|**totalCiudadUnaPasada()**| for of para recorrer el arreglo | solo se recorre una vez el arreglo de ventas entoces 10000 * 1 = 10000(recorridos)| O(n) | O(1) |
+|**totalCiudadUnaPasada()**| .reduce para recorer y acumular | solo se recorre una vez el arreglo de ventas entoces 10000 * 1 = 10000(recorridos)| O(n) | O(1) |
+
+### mc-7.5-d2
+### explicacion de porque ambas funciones son O(n) temporalmente
+
+ambas son O(n) porque su taza de cambio depende de los n datos que se le pasen, su crecimiento siempre es proporcional a 5
+
+### mc-7.6-d2
+### clasificacion de complejidad espacial
+
+|funcion|clasificacion Big O Espacial|memoria adicional|
+|---|---|---|
+|valorVenta()|O(n)|si, depende de la cantidad de datos|
+|totalVendido()|O(n)|si|
+|unidadesVendidas()|O(1)|no|
+|ventaMayor()|O(1)|no|
+|ticketPromedio()|O(n)|si, depende de la cantidad de datos|
+|promedioPorCiudad()|O(1)|no|
+|ventasPorCiudad()|O(1)|no|
+|totalPorCiudad2()|O(n)|si, depende de la cantidad de datos|
+|totalVendidoM()|O(1)|no|
+|unidadesVendidasM()|O(1)|no
+|ventasPorCiudadM()|O(n)|si, depende de la cantidad de los datos|
+|totalPorCiudadM()|O(n)|si, depende de la cantidad de los daotos|
+|unidadesPorProducto()|O(n)|si, depende de la cantidad de los datos|
+|topProductosPorValor()|O(n)|si, depende de la cantidad de los datos|
+|ventasDelDia()|O(n)|si, depende de la cantidad de los datos|
+
+
+
+### mc-7.7-d2
+### cual totalCiudad() usar?
+
+decido quedarme con la version totalCiudadUnaPasada ya que su Big o espacial siempre es constante, lo que la vuelve mucho mas eficiente a nivel de memoria

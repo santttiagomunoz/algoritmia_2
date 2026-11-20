@@ -2,7 +2,7 @@ import { ventas } from "./datos-d1.js";
 
 //Inicio mini reto # 2
 
-  const normalizar = (texto) =>
+export const normalizar = (texto) =>
     String(texto ?? "")
     .trim()
     .toLowerCase()
@@ -22,7 +22,7 @@ function darFormato(ventas){
 
 export function valorVenta(ventas){
     // return ventas.map(v => v.cantidad * v.precio)
-    const precioPorProducto = []
+    //const precioPorProducto = []
 
     const ciudadyprecio = []
     for(let i = 0; i < ventas.length; i++){
@@ -72,7 +72,7 @@ function ventaMayor(ventas){
 function ticketPromedio(ventas){
     let accumulator = 0
     for(const value of valorVenta(ventas)){
-        accumulator += value
+        accumulator += value.total
     }
 
     return accumulator / unidadesVendidas(ventas)  
@@ -84,7 +84,7 @@ function promedioPorCiudad(ventas, ciudad){
     
     for(let i = 0; i < ventas.length; i++){
         if(normalizar(ventas[i].ciudad) === normalizar(ciudad)){
-            total = (ventas[i].precio * ventas[i].cantidad) / ventas[i].cantidad
+            total += ventas[i].precio * ventas[i].cantidad
             cont++
         }     
     }
@@ -163,8 +163,7 @@ export function totalPorCiudadM(ventas){
             ciudad: nombre,
             totalVendido : totalVendido.toLocaleString("es-CO")
         }
-    })
-  
+    })  
 }
 
 export function unidadesPorProducto(ventas){
@@ -188,6 +187,7 @@ export function topProductosPorValor(ventas, k){
  // 1. Acumular el dinero generado por cada producto
   for (const v of ventas) {
     const producto = normalizar(v.producto);
+    
     totales.set(producto, (totales.get(producto) ?? 0) + v.cantidad * v.precio);
   }
 
