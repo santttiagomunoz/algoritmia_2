@@ -171,3 +171,7 @@ ambas son O(n) porque su taza de cambio depende de los n datos que se le pasen, 
 ### cual totalCiudad() usar?
 
 decido quedarme con la version totalCiudadUnaPasada ya que su Big o espacial siempre es constante, lo que la vuelve mucho mas eficiente a nivel de memoria
+
+### s1-d3 
+
+precio: memoria -> el set guarda hasta 1 elemento por cliento O(n) en espacio
