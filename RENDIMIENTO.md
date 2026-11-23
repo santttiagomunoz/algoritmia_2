@@ -67,3 +67,16 @@ El criterio para ordenar de **mayor a menor riesgo** ante el crecimiento de dato
 
 ### mc-8.6-d2
 ### Observaciones
+
+---
+
+### mc-9.1-d3
+
+|entradas|salidas|restricciones|restriccion|caso borde|
+|---|---|---|
+|arreglo de ventas|arreglo con los clientes que se repiten dentro del arreglo de ventas|sin duplicados y consistencia en el nombre del cliente|arregglo vacio[] , sin clientes repetidos [], cliente compra 3 veces o mas -> aparece una sola vez, un solo cliente en todas las ventas|
+
+### mc-9.6-d3
+
+#### intercambio de tiempo y memoria
+al no tener que realizar un bucle dentro de otro para realizar las respectivas comparaciones i j, se disminuye a On la complejidad temporal y su espacial se mantiene en On

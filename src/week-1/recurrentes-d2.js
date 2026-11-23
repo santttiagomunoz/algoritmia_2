@@ -4,7 +4,7 @@ import { generarVentas } from "./generador-d2.js";
 const nVentas = [1000, 2000, 4000, 8000, 16000]
 
 
-function clientesRecurrentes(ventas) {
+export function clientesRecurrentes(ventas) {
 
     const recurrentes = [];
 
