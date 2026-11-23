@@ -1,5 +1,5 @@
 import { ventas } from "./datos-d1.js";
-
+import { generarVentas } from "./generador-d2.js";
 //Inicio mini reto # 2
 
 export const normalizar = (texto) =>
@@ -208,3 +208,30 @@ export function ventasDelDia(ventas, fecha){
     return numVentas.length
            
 }
+
+export function medir(etiqueta, funcion){
+
+    console.time(etiqueta)
+    const resultado = funcion()
+    console.timeEnd(etiqueta)
+    return resultado
+}
+
+const VENTAS = generarVentas(10000)
+console.log("-----------tiempos con 10000 ventas")
+
+medir("valorVenta", () => valorVenta(VENTAS));
+medir("totalVendido", () => totalVendido(VENTAS))
+medir("unidadesVendidas", () => ventaMayor(VENTAS))
+medir("ticketPromedio", () => ticketPromedio(VENTAS))
+medir("promedioPorCiudad", () => promedioPorCiudad(VENTAS, "medellin"))
+medir("ventasPorCiudad", () => ventasPorCiudad(VENTAS, "medellin"))
+medir("totalPorCiudad2", () => totalPorCiudad2(VENTAS))
+medir("totalVendidoM", () => totalVendidoM(VENTAS))
+medir("unidadesVendidasM", () => unidadesVendidasM(VENTAS))
+medir("ventasPrCiudadM", () => ventasPorCiudadM(VENTAS, "medellin"))
+medir("totalPorCiudadM", () => totalPorCiudadM(VENTAS))
+medir("unidadesPorProducto", () => unidadesPorProducto(VENTAS))
+medir("topProductoPorValor", () =>topProductosPorValor(VENTAS))
+medir("ventasDelDia", () => ventasDelDia(VENTAS))
+
