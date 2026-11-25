@@ -80,3 +80,46 @@ El criterio para ordenar de **mayor a menor riesgo** ante el crecimiento de dato
 
 #### intercambio de tiempo y memoria
 al no tener que realizar un bucle dentro de otro para realizar las respectivas comparaciones i j, se disminuye a On la complejidad temporal y su espacial se mantiene en On
+
+---
+
+### mc-10.4-d3
+
+### traza para 87000
+|paso|p.precio|p.nombre|falta|vistos.has(falta)| vistos.set(p.precio, p)
+|---|---|---|---|---|---|
+|1|26000|Origen nariño 250 g|87000 - 26000 = 61000|vistos.has(26000) false|vistos.set(26000, Origen nariño 250)|
+|2|42000|Origen Huila 500 g|87000 - 42000 = 45000|vistos.has(42000) false|vistos.set(45000, Origen Huila 250 g)|
+|3|45000|Origen Sierra 500 g|87000 - 45000 = 42000|vistos.has(42000) true||
+
+
+### traza para 61000
+|paso|p.precio|p.nombre|falta|vistos.has(falta)| vistos.set(p.precio, p)
+|---|---|---|---|---|---|
+|1|26000|Origen nariño 250 g|61000 - 26000 = 35000|vistos.has(35000) false|vistos.set(26000, Origen nariño 250 g)|
+|2|42000|Origen Huila 500 g|61000 - 42000 = 19000|vistos.has(19000) false|vistos.set(42000, Origen Huila 500 g)|
+|3|45000|Origen Sierra 500 g|61000 - 45000 = 16000|vistos.has(16000) false|vistos.set(45000, Origen Sierra 500 g)|
+|4|18000|Filtros de papel x100|61000 - 18000 = 43000|vistos.has(43000) false|vistos.set(18000, Filtros de papel x100)|
+|5|35000|Taza de cerámica|61000 - 35000 = 26000|vistos.has(26000) true|Retorna [Origen Nariño 250 g, Taza de cerámica]|
+
+### traza para 50000
+|paso|p.precio|p.nombre|falta|vistos.has(falta)| vistos.set(p.precio, p)
+|---|---|---|---|---|---|
+|1|26000|Origen nariño 250 g|50000 - 26000 = 24000|vistos.has(24000) false|vistos.set(26000, Origen nariño 250 g)|
+|2|42000|Origen Huila 500 g|50000 - 42000 = 8000|vistos.has(8000) false|vistos.set(42000, Origen Huila 500 g)|
+|3|45000|Origen Sierra 500 g|50000 - 45000 = 5000|vistos.has(5000) false|vistos.set(45000, Origen Sierra 500 g)|
+|4|18000|Filtros de papel x100|50000 - 18000 = 32000|vistos.has(32000) false|vistos.set(18000, Filtros de papel x100)|
+|5|35000|Taza de cerámica|50000 - 35000 = 15000|vistos.has(15000) false|vistos.set(35000, Taza de cerámica)|
+|6|79000|Origen Huila 1 kg|50000 - 79000 = -29000|vistos.has(-29000) false|vistos.set(79000, Origen Huila 1 kg)|
+|7|95000|Prensa francesa|50000 - 95000 = -45000|vistos.has(-45000) false|vistos.set(95000, Prensa francesa)|
+|8|120000|Molino manual|50000 - 120000 = -70000|vistos.has(-70000) false|vistos.set(120000, Molino manual)|
+
+### mc-10.7-d3
+### complejidad temporal funciones comboRegalo, productoEstrellaPorCiudad, primerClienteUnico
+
+|funcion| complejidad temporal Big O| complejidad espacial Big O|
+|---|---|---|
+|comboRegaloFuerzaBruta| O n^2 | O (1) |
+|comboRegalo| O n | O n|
+|productoEstrellaPorCiudad|O n| O n |
+|primerClienteUnico|O n | O n|

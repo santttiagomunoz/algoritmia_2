@@ -1,4 +1,5 @@
 import { ventas } from "./datos-d1.js"
+import {normalizar, ventasDelDia} from "./analitica-d1.js"
 
 // mc-10.1-d3
 export const catalogo = [
@@ -32,7 +33,7 @@ export function comboRegaloFuerzaBruta(catalogo, valor){
     return  null
 }
 
-
+// mc-10.3-d3
 function comboRegalo(catalogo, valor){
     const vistos = new Map()
     for (const p of catalogo) {
@@ -48,12 +49,55 @@ function comboRegalo(catalogo, valor){
 }
 
 
-function productoEstrellaPorCiudad(){
+function productoEstrellaPorCiudad(ventas){
+    const ciudades = new Map()   
+
+    for(const v of ventas){
+
+        const ciudad = normalizar(v.ciudades)
+        const producto = normalizar(v.producto)
+
+        if(!ciudades.has(ciudad)) ciudades.set(ciudad, new Map())
+        
+        const mapaProductos = ciudad.get(ciudad)
+        mapaProductos.set(producto, (mapaProductos.get(producto) || 0) + 1)
+
+        let resultado = {}
+
+        for(const [ciudad, mapaProductos] of ciudades.entries()){
+            let estrella = null
+            let maxCantidad = 0
+
+            for(const [producto, cantidad] of mapaProductos.entries()){
+                if(cantidad > maxCantidad){
+                    maxCantidad = cantidad
+                    estrella = producto
+                }
+            }
+            resultado [ciudad] = {
+                producto: estrella,
+                cantidad: maxCantidad
+            }
+        }
+        return resultado
+    }
 
 }
 
-function primerClienteUnico(){
+function primerClienteUnico(ventas){
     
+    const clientes = new Map()    
+    for(const v of ventas){
+        clientes.set(v.cliente, (clientes.get(v.cliente) || 0) + 1)            
+    }
+
+    for (const v of ventas) {
+        if(clientes.get(v.cliente) === 1){
+            return v.cliente
+        }
+    }
+    return null
+
 }
 
 const ventasPrueba = [87000, 61000, 50000]
