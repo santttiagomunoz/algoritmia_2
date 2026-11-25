@@ -123,3 +123,4 @@ al no tener que realizar un bucle dentro de otro para realizar las respectivas c
 |comboRegalo| O n | O n|
 |productoEstrellaPorCiudad|O n| O n |
 |primerClienteUnico|O n | O n|
+

@@ -175,3 +175,35 @@ decido quedarme con la version totalCiudadUnaPasada ya que su Big o espacial sie
 ### s1-d3 
 
 precio: memoria -> el set guarda hasta 1 elemento por cliento O(n) en espacio
+
+
+### mc-11.3-d3
+### Primeras 3 posiciones de la ventana (k = 7, septiembre)
+
+Datos iniciales (índices 0 a 8):
+`[320, 410, 280, 390, 510, 620, 700, 300, 290, ...]`
+
+1. **Posición 1 (índices `0` a `6` — Día 1 al Día 7):**
+   `[ 320, 410, 280, 390, 510, 620, 700 ]  300, 290, ...`
+   * Cálculo inicial: `320 + 410 + 280 + 390 + 510 + 620 + 700`
+   * **Total ventana 1:** `3230`
+
+2. **Posición 2 (índices `1` a `7` — Día 2 al Día 8):**
+   ` 320, [ 410, 280, 390, 510, 620, 700, 300 ]  290, ...`
+   * Sale: `320` (índice `0`) | Entra: `300` (índice `7`)
+   * Cálculo: `3230 - 320 + 300`
+   * **Total ventana 2:** `3210`
+
+3. **Posición 3 (índices `2` a `8` — Día 3 al Día 9):**
+   ` 320, 410, [ 280, 390, 510, 620, 700, 300, 290 ] ...`
+   * Sale: `410` (índice `1`) | Entra: `290` (índice `8`)
+   * Cálculo: `3210 - 410 + 290`
+   * **Total ventana 3:** `3090`
+
+
+### mc-11.7-d3
+|funcion| complejidad temporal Big O| complejidad espacial Big O|
+|---|---|---|
+|mejorSemanaBruta()|O(n . k)|O(1)|
+|mejorSemana()|O(n)|O(1)|
+|parMasCercano()|O(n log n)|O(n)|

@@ -1,3 +1,5 @@
+import { catalogo } from "./catalogo-d3.js";
+
 
 const ventasDiarias = [
   320, 410, 280, 390, 510, 620, 700, 300, 290, 450,
@@ -7,52 +9,52 @@ const ventasDiarias = [
 
 
 //mc-11.2-d3
-export function mejorSemana(dias, k){
+export function mejorSemana(dias, k) {
 
-    let sumaVentana = 0
+  let sumaVentana = 0
 
-    for (let i = 0; i < k; i++) {
-        sumaVentana += dias[i];        
+  for (let i = 0; i < k; i++) {
+    sumaVentana += dias[i];
+  }
+
+  let maxSuma = sumaVentana
+  let dia = 0
+  for (let i = k; i < dias.length; i++) {
+    const elementoQueEntra = dias[i]
+    const elementoQueSale = dias[i - k]
+    sumaVentana += elementoQueEntra - elementoQueSale
+
+    if (sumaVentana > maxSuma) {
+      maxSuma = sumaVentana
+      dia = i - k + 1
     }
-
-    let maxSuma = sumaVentana
-    let dia = 0
-    for (let i = k; i < dias.length; i++) {
-        const elementoQueEntra = dias[i];
-        const elementoQueSale = dias[i - k]
-        sumaVentana += elementoQueEntra - elementoQueSale
-
-        if(sumaVentana > maxSuma){
-            maxSuma = sumaVentana
-             dia = i - k + 1
-        }        
-    }
-    return {
-        maxSuma, 
-        dia
-    }
+  }
+  return {
+    maxSuma,
+    dia
+  }
 }
 
 //mc-11.1-d3
-export function mejorSemanaBruta(dias, k){
-    
-    let maxSuma = 0    
-    let dia = 0
+export function mejorSemanaBruta(dias, k) {
 
-    for (let i = 0; i < dias.length; i++) {
-        let sumaVentana = 0
-        for (let j = i; j < i + k; j++) {            
-            sumaVentana += dias[j]
-        }
-            if(sumaVentana > maxSuma){
-                maxSuma = sumaVentana
-                dia = i
-            }        
+  let maxSuma = 0
+  let dia = 0
+
+  for (let i = 0; i < dias.length; i++) {
+    let sumaVentana = 0
+    for (let j = i; j < i + k; j++) {
+      sumaVentana += dias[j]
     }
-    return {
-        maxSuma,
-        dia
+    if (sumaVentana > maxSuma) {
+      maxSuma = sumaVentana
+      dia = i
     }
+  }
+  return {
+    maxSuma,
+    dia
+  }
 }
 
 //mc-11.4-d3
@@ -101,4 +103,47 @@ console.log(
 );
 
 //mc-11.5-d3
-export function parMasCercano(precio, presupuesto){}
+export function parMasCercano(precios, presupuesto) {
+
+  if (!Array.isArray(precios) || precios.length < 2) {
+    return null;
+  }
+
+  let izq = 0
+  let der = precios.length - 1
+  let maxSuma = -Infinity
+  let mejorPar = null
+
+  while (izq < der) {
+
+    let suma = precios[izq] + precios[der]
+
+    if (suma > presupuesto) {
+      der--
+    } else {
+
+      if (suma > maxSuma) {
+
+        maxSuma = suma
+        mejorPar = [precios[izq], precios[der]]
+      }
+      izq++
+    }
+    
+  }
+  return mejorPar
+}
+
+//mc-11.6-d3
+const precios = catalogo.map(p => p.precio ).sort((a,b)=> a.precio - b.precio )
+
+console.log(precios)
+
+const presupuestosPrueba = [100000, 140000, 40000]
+
+for(const presupuesto of presupuestosPrueba){
+
+  const par = parMasCercano(precios, presupuesto)
+
+  console.log("par mas cercano: ", par)
+}

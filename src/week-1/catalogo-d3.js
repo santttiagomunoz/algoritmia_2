@@ -111,4 +111,4 @@ function pruebas(ventasPrueba, catalogo){
     return combo
 }
 
-console.log(pruebas(ventasPrueba, catalogo))
+//console.log(pruebas(ventasPrueba, catalogo))
