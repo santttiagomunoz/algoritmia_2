@@ -58,7 +58,7 @@ export function mejorSemanaBruta(dias, k) {
 }
 
 //mc-11.4-d3
-function generarDiasAleatorios(cantidad, min = 100, max = 1000) {
+export function generarDiasAleatorios(cantidad, min = 100, max = 1000) {
   const dias = [];
   for (let i = 0; i < cantidad; i++) {
     dias.push(Math.floor(Math.random() * (max - min + 1)) + min);

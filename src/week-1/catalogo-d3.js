@@ -34,7 +34,7 @@ export function comboRegaloFuerzaBruta(catalogo, valor){
 }
 
 // mc-10.3-d3
-function comboRegalo(catalogo, valor){
+export function comboRegalo(catalogo, valor){
     const vistos = new Map()
     for (const p of catalogo) {
         const falta = valor - p.precio
@@ -49,7 +49,7 @@ function comboRegalo(catalogo, valor){
 }
 
 
-function productoEstrellaPorCiudad(ventas){
+export function productoEstrellaPorCiudad(ventas){
     const ciudades = new Map()   
 
     for(const v of ventas){
@@ -59,7 +59,7 @@ function productoEstrellaPorCiudad(ventas){
 
         if(!ciudades.has(ciudad)) ciudades.set(ciudad, new Map())
         
-        const mapaProductos = ciudad.get(ciudad)
+        const mapaProductos = ciudades.get(ciudad)
         mapaProductos.set(producto, (mapaProductos.get(producto) || 0) + 1)
 
         let resultado = {}
@@ -84,7 +84,7 @@ function productoEstrellaPorCiudad(ventas){
 
 }
 
-function primerClienteUnico(ventas){
+export function primerClienteUnico(ventas){
     
     const clientes = new Map()    
     for(const v of ventas){

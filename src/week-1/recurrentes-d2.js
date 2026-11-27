@@ -44,4 +44,5 @@ for (const v of nVentas) {
 
 }
 
-console.table(resultado)
+//console.log(clientesRecurrentes(ventas))
+//console.table(resultado)

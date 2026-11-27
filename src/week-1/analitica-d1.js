@@ -48,7 +48,7 @@ export function totalVendido(ventas){
     //s 2.0
     let accumulator = 0
     for(const value of valorVenta(ventas)){
-        accumulator += value
+        accumulator += value.total
     } 
     return accumulator   
 }
@@ -62,9 +62,10 @@ export function unidadesVendidas(ventas){
 }
 
 function ventaMayor(ventas){
-    let mayorVenta = 0
-    for(const value of ventas){
-        if(value.precio > mayorVenta) mayorVenta = value.precio
+    let mayorVenta = ventas?.[0] ?? null
+    for(const v of ventas){
+        const venta = valorVenta(v)
+        if(mayorVenta > venta.total) mayorVenta = venta.total
     }
     return mayorVenta
 }
@@ -165,6 +166,16 @@ export function totalPorCiudadM(ventas){
         }
     })  
 }
+function totalPorCiudad3(ventas){
+    
+    return ventas.reduce((total, venta)=>{
+        const ciudad = normalizar(venta.ciudad)
+        const monto = venta.precio * venta.cantidad
+        
+        total[ciudad] = (acc[ciudad] || 0) + monto
+        return total
+    }, {})
+}
 
 export function unidadesPorProducto(ventas){
     const productos = [...new Set(ventas.map(v => normalizar(v.producto)))]
@@ -235,3 +246,5 @@ medir("unidadesPorProducto", () => unidadesPorProducto(VENTAS))
 medir("topProductoPorValor", () =>topProductosPorValor(VENTAS))
 medir("ventasDelDia", () => ventasDelDia(VENTAS))
 
+
+console.log("valor moayor",ventaMayor(ventas))
